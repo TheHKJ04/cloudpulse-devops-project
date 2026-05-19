@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cloudpulse
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: cloudpulse
+
+  template:
+    metadata:
+      labels:
+        app: cloudpulse
+
+    spec:
+      containers:
+      - name: cloudpulse
+
+        image: thehkj04/cloudpulse:v2
+
+        ports:
+        - containerPort: 80
+
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
