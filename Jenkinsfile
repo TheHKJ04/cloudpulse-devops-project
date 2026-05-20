@@ -4,12 +4,11 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-
+        stage('Clone') {
             steps {
-
-                git branch: 'main',
-                url: 'https://github.com/TheHKJ04/cloud-pulse-devops-project.git'
+                git credentialsId: 'github-token',
+                    url: 'https://github.com/TheHKJ04/cloud-pulse-devops-project.git',
+                    branch: 'main'
             }
         }
 
