@@ -1,3 +1,6 @@
 .git
 terraform
 monitoring
+README.md
+*.tfstate
+*.backup

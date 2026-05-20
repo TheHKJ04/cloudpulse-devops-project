@@ -1,124 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CloudPulse DevOps Dashboard</title>
-
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CloudPulse Date Dashboard</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 
 <body>
 
-  <div id="loader">
-    <h1>CloudPulse Loading...</h1>
+  <div class="container">
+
+    <header>
+      <h1>CloudPulse Date Dashboard</h1>
+
+      <button id="themeToggle">
+        Toggle Theme
+      </button>
+    </header>
+
+    <section class="hero">
+      <h2>Interactive Date Utility Platform</h2>
+      <p>
+        Calculate day, week, countdown, date difference,
+        future dates and more.
+      </p>
+    </section>
+
+    <section class="date-section">
+
+      <div class="input-card">
+
+        <h3>Select Date</h3>
+
+        <input type="date" id="dateInput"/>
+
+        <div class="button-group">
+          <button onclick="calculateDateInfo()">
+            Calculate
+          </button>
+
+          <button onclick="clearResults()">
+            Clear
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="results-grid">
+
+      <div class="card">
+        <h3>Day</h3>
+        <p id="dayResult">--</p>
+      </div>
+
+      <div class="card">
+        <h3>Week Number</h3>
+        <p id="weekResult">--</p>
+      </div>
+
+      <div class="card">
+        <h3>Day Of Year</h3>
+        <p id="dayYearResult">--</p>
+      </div>
+
+      <div class="card">
+        <h3>Days Remaining</h3>
+        <p id="remainingResult">--</p>
+      </div>
+
+      <div class="card">
+        <h3>+30 Days</h3>
+        <p id="plus30Result">--</p>
+      </div>
+
+      <div class="card">
+        <h3>-30 Days</h3>
+        <p id="minus30Result">--</p>
+      </div>
+
+      <div class="card">
+        <h3>Difference From Today</h3>
+        <p id="differenceResult">--</p>
+      </div>
+
+      <div class="card">
+        <h3>Leap Year</h3>
+        <p id="leapResult">--</p>
+      </div>
+
+    </section>
+
   </div>
-
-  <header>
-    <nav>
-      <h1>☁ CloudPulse</h1>
-
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#metrics">Metrics</a></li>
-        <li><a href="#pipeline">Pipeline</a></li>
-      </ul>
-
-      <button id="themeToggle">🌙</button>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h2>Modern DevOps Monitoring Platform</h2>
-
-    <p>
-      AWS • Docker • Kubernetes • Jenkins • Terraform
-    </p>
-
-    <div class="hero-buttons">
-      <button onclick="showToast()">Deploy Application</button>
-      <button onclick="startDeployment()">Run Pipeline</button>
-    </div>
-
-    <div class="progress-container">
-      <div id="progressBar"></div>
-    </div>
-  </section>
-
-  <section id="metrics" class="metrics">
-
-    <div class="metric-card">
-      <h3 id="deployments">0</h3>
-      <p>Deployments</p>
-    </div>
-
-    <div class="metric-card">
-      <h3 id="containers">0</h3>
-      <p>Containers</p>
-    </div>
-
-    <div class="metric-card">
-      <h3 id="uptime">99%</h3>
-      <p>Uptime</p>
-    </div>
-
-    <div class="metric-card">
-      <h3 id="clock"></h3>
-      <p>Live Time</p>
-    </div>
-
-  </section>
-
-  <section id="services" class="services">
-
-    <div class="service-card">
-      <h3>🐳 Docker</h3>
-      <p>Containerized Services</p>
-      <button onclick="toggleStatus(this)">Running</button>
-    </div>
-
-    <div class="service-card">
-      <h3>☸ Kubernetes</h3>
-      <p>Cluster Management</p>
-      <button onclick="toggleStatus(this)">Running</button>
-    </div>
-
-    <div class="service-card">
-      <h3>📊 Grafana</h3>
-      <p>Monitoring Dashboard</p>
-      <button onclick="toggleStatus(this)">Running</button>
-    </div>
-
-    <div class="service-card">
-      <h3>🚀 Jenkins</h3>
-      <p>CI/CD Automation</p>
-      <button onclick="toggleStatus(this)">Running</button>
-    </div>
-
-  </section>
-
-  <section id="pipeline" class="pipeline">
-
-    <h2>CI/CD Pipeline Flow</h2>
-
-    <div class="pipeline-flow">
-
-      <div class="step">Git Push</div>
-      <div class="step">GitHub</div>
-      <div class="step">Jenkins</div>
-      <div class="step">Docker</div>
-      <div class="step">Kubernetes</div>
-      <div class="step">Monitoring</div>
-
-    </div>
-
-  </section>
-
-  <div id="toast">Deployment Successful 🚀</div>
 
   <script src="script.js"></script>
 
 </body>
-
 </html>

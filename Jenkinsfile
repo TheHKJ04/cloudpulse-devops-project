@@ -4,10 +4,12 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
+        stage('Clone Repository') {
 
             steps {
-                git 'https://github.com/TheHKJ04/cloudpulse-devops-project.git'
+
+                git branch: 'main',
+                url: 'https://github.com/TheHKJ04/cloud-pulse-devops-project.git'
             }
         }
 
@@ -36,6 +38,7 @@ pipeline {
 
                     sh '''
                     echo $PASS | docker login -u $USER --password-stdin
+
                     docker push thehkj04/cloudpulse:v2
                     '''
                 }
@@ -60,4 +63,5 @@ pipeline {
                 '''
             }
         }
+    }
 }
