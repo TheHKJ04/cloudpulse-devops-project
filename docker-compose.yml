@@ -1,36 +1,22 @@
-version: '3.9'
-
 services:
 
-  cloudpulse:
-
-    image: thehkj04/cloudpulse:v2
-
-    container_name: cloudpulse-container
-
-    ports:
-      - "30080:80"
-
-    restart: always
-
   prometheus:
-
     image: prom/prometheus
-
     container_name: prometheus
 
     ports:
-      - "9091:9090"
+      - "9090:9090"
 
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
 
     restart: always
 
+    networks:
+      - monitoring
+
   grafana:
-
     image: grafana/grafana
-
     container_name: grafana
 
     ports:
@@ -38,10 +24,14 @@ services:
 
     restart: always
 
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+    networks:
+      - monitoring
+
   node-exporter:
-
     image: prom/node-exporter
-
     container_name: node-exporter
 
     ports:
@@ -49,10 +39,11 @@ services:
 
     restart: always
 
+    networks:
+      - monitoring
+
   cadvisor:
-
     image: gcr.io/cadvisor/cadvisor:latest
-
     container_name: cadvisor
 
     privileged: true
@@ -68,16 +59,51 @@ services:
 
     restart: always
 
+    networks:
+      - monitoring
+
   nginx-exporter:
-
     image: nginx/nginx-prometheus-exporter
-
     container_name: nginx-exporter
 
     command:
-      - -nginx.scrape-uri=http://cloudpulse/nginx_status
+      - -nginx.scrape-uri=http://cloudpulse-container/nginx_status
 
     ports:
       - "9113:9113"
 
     restart: always
+
+    depends_on:
+      - cloudpulse
+
+    networks:
+      - monitoring
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+
+    ports:
+      - "8082:8080"
+      - "50000:50000"
+
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+
+    restart: always
+
+    networks:
+      - monitoring
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+
+volumes:
+  grafana-storage:
+  jenkins_home:
+
+networks:
+  monitoring:
+
+  

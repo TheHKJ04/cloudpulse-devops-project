@@ -44,21 +44,14 @@ pipeline {
             }
         }
 
-        stage('Deploy Application') {
-
+        stage('Deploy to Kubernetes') {
             steps {
 
                 sh '''
-                docker stop cloudpulse-app || true
+                kubectl apply -f k8s/
 
-                docker rm cloudpulse-app || true
-
-                docker pull thehkj04/cloudpulse:v2
-
-                docker run -d \
-                --name cloudpulse-app \
-                -p 30080:80 \
-                thehkj04/cloudpulse:v2
+                kubectl rollout restart deployment/cloudpulse \
+                -n cloudpulse
                 '''
             }
         }

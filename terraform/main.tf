@@ -6,47 +6,68 @@ resource "aws_security_group" "devops_sg" {
 
   name = "devops-security-group"
 
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+ingress {
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
-  ingress {
-    from_port = 8080
-    to_port = 8080
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+ingress {
+  from_port   = 30080
+  to_port     = 30080
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
-  ingress {
-    from_port = 30080
-    to_port = 30080
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+ingress {
+  from_port   = 3000
+  to_port     = 3000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
-  ingress {
-    from_port = 3000
-    to_port = 3000
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+ingress {
+  from_port   = 9090
+  to_port     = 9090
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
-  ingress {
-    from_port = 9091
-    to_port = 9091
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+ingress {
+  from_port   = 8082
+  to_port     = 8082
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+ingress {
+  from_port   = 9100
+  to_port     = 9100
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+  from_port   = 9113
+  to_port     = 9113
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+  from_port   = 8081
+  to_port     = 8081
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+ingress {
+  from_port   = 6443
+  to_port     = 6443
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
 }
 
 resource "aws_instance" "devops_server" {
