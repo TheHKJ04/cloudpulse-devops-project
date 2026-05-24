@@ -91,14 +91,18 @@ services:
       - "50000:50000"
 
     volumes:
-      - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
+          - jenkins_home:/var/jenkins_home
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /usr/bin/docker:/usr/bin/docker
+          - /usr/local/bin/kubectl:/usr/local/bin/kubectl:ro
 
     restart: always
 
     networks:
       - monitoring
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - KUBECONFIG=/var/jenkins_home/config 
 
 volumes:
   grafana-storage:
