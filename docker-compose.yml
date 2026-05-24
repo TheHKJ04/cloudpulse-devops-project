@@ -67,21 +67,24 @@ services:
     container_name: nginx-exporter
 
     command:
-      - -nginx.scrape-uri=http://cloudpulse-container/nginx_status
-
+      - -nginx.scrape-uri=http://localhost:30080/nginx_status
     ports:
       - "9113:9113"
 
     restart: always
-
-    depends_on:
-      - cloudpulse
 
     networks:
       - monitoring
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins
+
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+
+    group_add:
+      - "986"
 
     ports:
       - "8082:8080"
@@ -96,8 +99,6 @@ services:
 
     networks:
       - monitoring
-    environment:
-      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
 
 volumes:
   grafana-storage:
@@ -105,5 +106,3 @@ volumes:
 
 networks:
   monitoring:
-
-  

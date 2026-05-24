@@ -13,12 +13,12 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-
             steps {
-
                 sh '''
+                docker pull thehkj04/cloudpulse:v2 || true
                 docker build -t thehkj04/cloudpulse:v2 \
-                -f docker/Dockerfile .
+                    --cache-from thehkj04/cloudpulse:v2 \
+                    -f docker/Dockerfile .
                 '''
             }
         }

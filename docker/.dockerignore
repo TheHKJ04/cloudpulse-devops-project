@@ -1,6 +1,15 @@
+# Version control
 .git
-terraform
-monitoring
-README.md
+.gitignore
+
+# Terraform configs and state
+terraform/
 *.tfstate
+*.tfstate.*
 *.backup
+
+# Monitoring configs/logs
+monitoring/
+
+# Documentation
+README.md
