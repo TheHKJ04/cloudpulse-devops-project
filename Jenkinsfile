@@ -12,6 +12,12 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                sh 'echo Running tests'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh '''

@@ -1,4 +1,3 @@
-cat > .dockerignore << 'EOF'
 .git
 .gitignore
 terraform/
@@ -8,4 +7,3 @@ monitoring/
 *.backup
 .vscode/
 jenkins_home/
-EOF
