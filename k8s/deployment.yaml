@@ -20,7 +20,7 @@ spec:
       containers:
       - name: cloudpulse
 
-        image: thehkj04/cloudpulse:v2
-
+        image: thehkj04/cloudpulse:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
